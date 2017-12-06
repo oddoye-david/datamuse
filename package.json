@@ -1,21 +1,24 @@
 {
   "name": "datamuse-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SDK for the Datamuse API",
-  "main": "./dist/index.js",
+  "main": "dist/index.js",
   "dependencies": {
     "axios": "0.17.1",
     "joi": "^13.0.2"
   },
   "scripts": {
-    "compile": "./node_modules/.bin/babel --out-dir dist src",
-    "postinstall": "npm run compile",
-    "test": "./node_modules/.bin/jest"
+    "compile": "node_modules/.bin/babel --out-dir dist src",
+    "prepublish": "npm run test && npm run compile",
+    "test": "node_modules/.bin/jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/oddoye-david/datamuse.git"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "Datamuse"
   ],
