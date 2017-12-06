@@ -1,6 +1,6 @@
 'use strict';
 
-import { optionsSchema } from './validators/utils';
+import { options } from './validators/utils';
 
 /**
  * Convert Objects to query params
@@ -9,7 +9,7 @@ import { optionsSchema } from './validators/utils';
  * @returns String
  */
 export function objectToQueryParams(obj) {
-  const { error } = optionsSchema.validate(obj);
+  const { error } = options.validate(obj);
   if (error) {
     throw new Error(error);
   }

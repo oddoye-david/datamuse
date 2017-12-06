@@ -1,7 +1,7 @@
 'use strict';
 
 import axios from 'axios';
-import { optionsSchema } from './validators/words';
+import { options } from './validators/words';
 import { objectToQueryParams } from './utils';
 
 const datamuseApi = axios.create({
@@ -16,7 +16,7 @@ const datamuseApi = axios.create({
  * @returns Array
  */
 export async function words(opts) {
-  const { error } = optionsSchema.validate(opts);
+  const { error } = options.validate(opts);
   if (error) {
     throw new Error(error);
   }

@@ -1,32 +1,56 @@
 'use strict';
 
-import Joi from 'joi';
+const VALID_KEYS = {
+  ml: 'string',
+  sl: 'string',
+  sp: 'string',
+  rel_: 'string',
+  rel_jja: 'string',
+  rel_jjb: 'string',
+  rel_syn: 'string',
+  rel_trg: 'string',
+  rel_ant: 'string',
+  rel_spc: 'string',
+  rel_gen: 'string',
+  rel_com: 'string',
+  rel_par: 'string',
+  rel_bga: 'string',
+  rel_bgb: 'string',
+  rel_rhy: 'string',
+  rel_nry: 'string',
+  rel_hom: 'string',
+  rel_cns: 'string',
+  v: 'string',
+  topics: 'string',
+  lc: 'string',
+  rc: 'string',
+  max: 'number',
+  md: 'string',
+  qe: 'string',
+};
 
-export const optionsSchema = Joi.object({
-  ml: Joi.string(),
-  sl: Joi.string(),
-  sp: Joi.string(),
-  rel_: Joi.string(),
-  rel_jja: Joi.string(),
-  rel_jjb: Joi.string(),
-  rel_syn: Joi.string(),
-  rel_trg: Joi.string(),
-  rel_ant: Joi.string(),
-  rel_spc: Joi.string(),
-  rel_gen: Joi.string(),
-  rel_com: Joi.string(),
-  rel_par: Joi.string(),
-  rel_bga: Joi.string(),
-  rel_bgb: Joi.string(),
-  rel_rhy: Joi.string(),
-  rel_nry: Joi.string(),
-  rel_hom: Joi.string(),
-  rel_cns: Joi.string(),
-  v: Joi.string(),
-  topics: Joi.string(),
-  lc: Joi.string(),
-  rc: Joi.string(),
-  max: Joi.number(),
-  md: Joi.string().allow(['d', 'p', 's', 'r', 'f']),
-  qe: Joi.string(),
-}).min(1).required();
+export const options = {
+  validate(opts) {
+    const optsKeys = Object.keys(opts);
+    if (!optsKeys.length) {
+      return { error: new Error('Options must have at least one key') };
+    }
+
+    const invalidKeys = optsKeys.filter((optsKey) => {
+      const validKeyType = VALID_KEYS[optsKey];
+      if (validKeyType) {
+        if (optsKey === 'md') {
+          return !(['d', 'p', 's', 'r', 'f'].includes(opts[optsKey]));
+        }
+        return typeof opts[optsKey] !== validKeyType; // eslint-disable-line
+      }
+
+      return false;
+    });
+    if (invalidKeys.length) {
+      return { error: new Error('Options includes invalid keys') };
+    }
+
+    return { error: null };
+  },
+};
