@@ -1,5 +1,5 @@
 {
-  "name": "datamuse",
+  "name": "datamuse-node",
   "version": "1.0.0",
   "description": "SDK for the Datamuse API",
   "main": "dist/index.js",
