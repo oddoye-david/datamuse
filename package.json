@@ -1,6 +1,6 @@
 {
   "name": "datamuse-node",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "SDK for the Datamuse API",
   "main": "dist/datamuse.js",
   "dependencies": {
