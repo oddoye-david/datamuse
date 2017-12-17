@@ -1,33 +1,33 @@
 'use strict';
 
 import toBeType from 'jest-tobetype';
-import { words } from '../src/datamuse';
+import { sug } from '../src/datamuse';
 
 expect.extend(toBeType);
 
 jest.mock('../src/datamuse.js');
 
-describe('Words', () => {
-  it('Should throw exception if no options', () => expect(words()).rejects.toBeDefined());
+describe('Sug', () => {
+  it('Should throw exception if no options', () => expect(sug()).rejects.toBeDefined());
 
   it('Should throw exception if invalid option(s)', () =>
-    expect(words({
+    expect(sug({
       foo: 'bar',
     })).rejects.toBeDefined());
 
   it('Should not throw exception if options are valid', async () =>
-    expect(words({
-      ml: 'duck',
-      sp: 'b*',
+    expect(sug({
+      s: 'duck',
+      max: 42,
     })).resolves.toBeDefined());
 
   it('Should return a promise', () =>
-    expect(words({
-      ml: 'promise',
+    expect(sug({
+      s: 'promise',
     })).toBeType('object'));
 
   it('Should return an array', () =>
-    expect(words({
-      ml: 'promise',
+    expect(sug({
+      s: 'promise',
     })).resolves.toBeType('array'));
 });

@@ -2,7 +2,7 @@
   "name": "datamuse-node",
   "version": "1.0.3",
   "description": "SDK for the Datamuse API",
-  "main": "dist/index.js",
+  "main": "dist/datamuse.js",
   "dependencies": {
     "axios": "0.17.1"
   },

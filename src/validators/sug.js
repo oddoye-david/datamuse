@@ -1,35 +1,12 @@
 'use strict';
 
 const VALID_KEYS = {
-  ml: 'string',
-  sl: 'string',
-  sp: 'string',
-  rel_: 'string',
-  rel_jja: 'string',
-  rel_jjb: 'string',
-  rel_syn: 'string',
-  rel_trg: 'string',
-  rel_ant: 'string',
-  rel_spc: 'string',
-  rel_gen: 'string',
-  rel_com: 'string',
-  rel_par: 'string',
-  rel_bga: 'string',
-  rel_bgb: 'string',
-  rel_rhy: 'string',
-  rel_nry: 'string',
-  rel_hom: 'string',
-  rel_cns: 'string',
+  s: 'string',
   v: 'string',
-  topics: 'string',
-  lc: 'string',
-  rc: 'string',
   max: 'number',
-  md: 'string',
-  qe: 'string',
 };
 
-export const wordsOptionsValidator = {
+export const sugOptionsValidator = {
   validate(opts) {
     const optsKeys = Object.keys(opts);
     if (!optsKeys.length) {
@@ -39,12 +16,8 @@ export const wordsOptionsValidator = {
     const invalidKeys = optsKeys.filter((optsKey) => {
       const validKeyType = VALID_KEYS[optsKey];
       if (validKeyType) {
-        if (optsKey === 'md') {
-          return !(['d', 'p', 's', 'r', 'f'].includes(opts[optsKey]));
-        }
         return typeof opts[optsKey] !== validKeyType; // eslint-disable-line
       }
-
       return true;
     });
     if (invalidKeys.length) {
